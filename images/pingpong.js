@@ -1,38 +1,24 @@
-'use strict';
 (function($){
 
   // data definition
   var pingpong = {
-    scoreA : 0,  // score for player A
-    scoreB : 0,  // score for player B
-
     paddleA: {
-      speed: 5,
-
       x: 50,
       y: 100,
       width: 20,
-      height: 70,
-      directionX: 1,
-      directionY: 1
-
+      height: 70
     },
     paddleB: {
-      speed: 5,
-
-      x: 120,
+      x: 320,
       y: 100,
       width: 20,
-      height: 70,
-      directionX: 1,
-      directionY: 1
-//CAN CHANGE DIRECTION BY MAKING DIRECTIONX= -1;
+      height: 70
     },
     playground: {
       offsetTop: $("#playground").offset().top,
       height: parseInt($("#playground").height()),
       width: parseInt($("#playground").width()),
-     },
+    },
     ball: {
       speed: 5,
       x: 150,
@@ -40,13 +26,8 @@
       radius: 20,
       directionX: 1,
       directionY: 1
-    },
-
-
+    }
   };
-
-
-
 
   // ball collision logic
   function ballHitsTopBottom() {
@@ -58,11 +39,6 @@
     return pingpong.ball.x + pingpong.ball.speed * pingpong.ball.directionX > pingpong.playground.width;
   }
   function ballHitsLeftWall() {
-    return pingpong.ball.x + pingpong.ball.speed * pingpong.ball.directionX < 0;
-  }
-
-
-  function playerhitsleftwall() {
     return pingpong.ball.x + pingpong.ball.speed * pingpong.ball.directionX < 0;
   }
 
@@ -93,32 +69,6 @@
     ball.y += ball.speed * ball.directionY;
   }
 
-  //USED TO MOVE SHIP AND PLAYER IN CORRECT DIRECTIONS
-  function moveShip() {
-    var paddleA = pingpong.paddleA;
-    var paddleB= pingpong.paddleB;
-
-
-    // update the ball position data
-    paddleA.x += paddleA.speed * paddleA.directionX;
-  //  paddleA.y += paddleA.speed * paddleA.directionY;
-  paddleB.x += paddleB.speed * paddleB.directionX;
-   //paddleB.y += paddleB.speed * paddleB.directionY;
-
-  // paddleB.directionY *= -1;
-
-  //USED TO REINSTATIATE PLAYER AFTER GOES TO LEFT OFF SCREEN
-    if (playerhitsleftwall()) {
-      var paddleB= pingpong.paddleB;
-        paddleB.x = 120;
-        paddleB.y = 100;
-
-
-    }
-
-  }
-
-
 
   // winning logic
   function playerAWin() {
@@ -128,26 +78,13 @@
 
     // update the ball location variables;
     pingpong.ball.directionX = -1;
-
-    /*
-    // player B lost.
-    pingpong.scoreA += 1;
-    $("#score-a").text(pingpong.scoreA);
-    */
   }
-
   function playerBWin() {
     // reset the ball;
     pingpong.ball.x = 150;
     pingpong.ball.y = 100;
 
     pingpong.ball.directionX = 1;
-
-    /*
-    // player A lost.
-    pingpong.scoreB += 1;
-    $("#score-b").text(pingpong.scoreB);
-        */
   }
 
   // view rendering
@@ -163,23 +100,6 @@
       "top" : ball.y + ball.speed * ball.directionY
     });
   }
-
-  //USED TO RENDER SHIP AND PLAYER IN CORRECT DIRECTIONS
-  function renderShip() {
-    var paddleA = pingpong.paddleA;
-    $("#paddleA").css({
-      "left" : paddleA.x + paddleA.speed * paddleA.directionX,
-      "top" : paddleA.y + paddleA.speed * paddleA.directionY
-    });
-
-    var paddleB = pingpong.paddleB;
-    $("#paddleB").css({
-      "right" : paddleB.x + paddleB.speed * paddleB.directionX,
-      "top" : paddleB.y + paddleB.speed * paddleB.directionY
-    });
-
-  }
-
 
 
   // view inputs
@@ -203,79 +123,31 @@
   // browser render loop
   function render() {
     renderBall();
-    renderShip();
-  //  renderPaddles();
-     window.requestAnimationFrame(render);
+
+    renderPaddles();
+
+    window.requestAnimationFrame(render);
   }
 
   function gameloop() {
     moveBall();
-    moveShip();
-   }
+  }
 
 
   // starting point of entire game
   function init() {
 
     // set interval to call gameloop logic in 30 FPS
-    ball.timer = setInterval(gameloop, 1000/30);
-
-    paddleA.timer = setInterval(gameloop, 1000/30);
-
-    paddleB.timer = setInterval(gameloop, 1000/30);
-
-  //  button1Check();
+    pingpong.timer = setInterval(gameloop, 1000/30);
 
     // view rendering
     window.requestAnimationFrame(render);
 
-    hideScreen("gameStartscreen");
-    hideScreen("playground");
-    hideScreen("scoreScreen");
-    hideScreen("Level2");
-
     // inputs
-  //  handleMouseInputs();
+    handleMouseInputs();
   }
 
   // Execute the starting point
   init();
 
 })(jQuery);
-
-
-function showScreen(id) {
-     var screen = document.getElementById(id);
-     screen.style.display = "block";
- }
-
- function hideScreen(id) {
-  var screen = document.getElementById(id);
-  screen.style.display = "none";
-}
-
- // view rendering
- function button1Check() {
-   console.log('clicked!');
-   hideScreen("Level2");
-   showScreen("gameStartscreen");
-   showScreen("playground");
-
-     //  game.showScreen("levelselectscreen");
-     console.log('clicked2222!');
-
-  }
-
-  // view rendering
-  function showScoreScreen() {
-    hideScreen("playground");
-     showScreen("scoreScreen");
-
-   }
-
-   // view rendering
-   function level2() {
-     hideScreen("playground");
-      showScreen("Level2");
-
-    }

@@ -56,3 +56,14 @@
 .right.paddle-hand {
   right: 50px;
 }
+
+
+#gameStartscreen{
+  font-size:30px;
+  color:green;
+ }
+
+ #button1{
+   font-size:30px;
+   color:green;
+  }

@@ -10,11 +10,45 @@
     <h1>Ping Pong</h1>
   </header>
   <div id="game">
+    <button id="button1" onclick="button1Check()">Play</button>
+    <button id="button1" onclick="level2()">Level2</button>
+
     <div id="playground">
-       <div id="paddleA" class="paddle"></div>
-      <div id="paddleB" class="paddle"></div>
-      <div id="ball"></div>
+
+        <div id="gameStartscreen">
+            <button id="button1" onclick="showScoreScreen()">Play</button>
+            <button id="button2">Settings</button>
+        </div>
+
+        <div id="gameStartscreen2">
+            <button id="button1" onclick="showScoreScreen()">Play</button>
+            <button id="button1" onclick=>blue</button>
+        </div>
+
+        <div id="scoreScreen">
+            <div style="color:blue">This is Score Screen</div>
+            <button id="button1" onclick="showScoreScreen()">Score: 0</button>
+            <button id="button2" >Score2: 10</button>
+        </div>
+
+
+         <div id="paddleA" class="paddle"></div>
+         <div id="paddleB" class="paddle"></div>
+
+        <div id="paddleB" class="paddle"></div>
+        <div id="ball"></div>
+
+
     </div>
+    <div id="Level2">
+        <div style="color:blue">This is Level 2</div>
+    </div>
+
+
+     <div id="scoreboard">
+  <div class="score"> A : <span id="score-a">0</span></div>
+  <div class="score"> B : <span id="score-b">0</span></div>
+</div>
   </div>
   <footer>
     This is an example of creating a Ping Pong Game.
