@@ -10,6 +10,100 @@
 3) Add enaemy
 4) Add Colision for  top of level and bottom of level
 
+
+
+function gameItem(item){
+	var blue = item;
+
+	localStorage.setItem("savedItem", blue);
+
+	//CREATES JSON OBJECT WITH DATA,
+	// NOTE: CAN CHANGE THESE IF CHANGE PARAMETERS OF FUNCTION
+carGame[blue] = {speed: 5,
+							x: 100,
+							y: 10,
+							width: 100,
+							height: 80,
+							directionX: 1,
+							directionY: 1};
+
+
+			//moveShip
+	     var blue2 = carGame[blue];
+			 console.log(blue2);
+    blue2.x += blue2.speed * blue2.directionX;
+
+		localStorage.setItem("savedItem2", blue2);
+
+			//console.log(blue2);
+
+			// RESETS IMAGE TO PARTICULAR LOCATION
+			if (ballHitsRightWall()) {
+			//	resetBall();
+			//USE TO POSITION IMAGE TO PARTICULAR LOCATION,
+			//THE X AND Y VALUES CAN BE CHANGED!
+			blue2.x = 200;
+			blue2.y = 80;
+			blue2.directionX = 0;
+			}
+
+	//g = document.createElement('div');
+	//g.id = 'desiredId'
+	//		<div id="paddleC" class="paddle"></div>
+
+				//CREATE DOM ELEMENT
+	var para = document.createElement("div");
+	para.id = blue;
+	//var node = document.createTextNode("This is new.");
+	//para.appendChild(node);
+
+	var element = document.getElementById("gameAssets");
+	var child = document.getElementById(blue);
+	element.insertBefore(para,child);
+
+
+
+
+				//CHANGE STYLE OF DOC ELEMENT
+	var square = document.getElementById(blue);
+	//	square.style.backgroundColor = "#fa4";
+		square.style.backgroundImage = "url('../images/ship.png')";
+//document.getElementById("myDiv").style.backgroundImage = "url('img_tree.png')";
+//  document.getElementById("myAnchor").id = "newid";
+//document.body.style.backgroundImage = "url('img_tree.png')";
+
+//var square = document.getElementById("square"),
+//  square.style.backgroundColor = "#fa4";
+
+
+var black =localStorage.getItem("savedItem");
+var red = "#" + black;
+
+var green  = localStorage.getItem("savedItem2");
+	console.log(green);
+
+//var black = "#"+blue;
+//console.log(red);
+	$(red).css({
+		"left" : green.x + green.speed * green.directionX,
+		"top" : green.y + green.speed * green.directionY
+	});
+
+		/*
+		left: 80px;
+		 width:50px;
+		height:50px;
+		transform: rotate(90deg);
+
+		background-image: url(../images/ship.png);
+		*/
+
+ //window.requestAnimationFrame();
+	// 	blue2.timer = setInterval(gameloop, 1000/30);
+	//	function render() {  renderShip();  window.requestAnimationFrame(render);  }
+	//	function gameloop() {  moveShip();   }
+
+}
 5) Get movement for 2dbox objects.
 
 //in the Step() function

@@ -224,6 +224,8 @@ carGame.levels[1] = [{"type":"car","x":50,"y":310,"fuel":20},
 			}
 		});
 
+	//	gameItem('blackman');
+
 		window.requestAnimationFrame(render);
 
 	};
@@ -315,6 +317,7 @@ function fireMissile()
 	//CREATES IMAGE AND ALLOWS YOU TO MOVE TO ANY LOCATION!
 //REFER TO THE CLASS ON CSS PAGE FOR X AND Y POSITION
 //ALSO NOTE THAT ITS ABSOLUTE POSITIONING.
+
 function addImage() {
 	var x = document.createElement("IMG");
 
@@ -342,18 +345,10 @@ function addImage() {
 	function boxAppear() { boxShape1(400, 250);  };
 
 	// browser render loop
-  function render() {   renderShip();  moveShip(); 
-
-	 }
-
-//  function gameloop() {    }
+  function render() {   renderShip();  moveShip(); }
 
 
-
-function whiteMove(){
-
-
-}
+	function whiteMove(){   }
 
 
 	//USED TO MOVE SHIP AND PLAYER IN CORRECT DIRECTIONS
@@ -377,8 +372,6 @@ function whiteMove(){
 			var enemy = carGame.enemy;
  			enemy.x += enemy.speed * enemy.directionX;
 
-
-
 			var blue =localStorage.getItem("savedItem");
 		//	console.log(blue);
 
@@ -390,6 +383,9 @@ function whiteMove(){
 	      resetBall();
 	    }
 
+
+			blue2.timer = setInterval(gameloop, 1000/30);
+
   }
 
 //console.log(carGame);
@@ -397,14 +393,13 @@ function whiteMove(){
 //localStorage.setItem("lastname", "Smith");
 //localStorage.getItem("lastname");
 
+
 function gameItem(item){
 	var blue = item;
 
 	localStorage.setItem("savedItem", blue);
 
-	//CREATES JSON OBJECT WITH DATA,
-	// NOTE: CAN CHANGE THESE IF CHANGE PARAMETERS OF FUNCTION
-carGame[blue] = {speed: 5,
+ carGame[blue] = {speed: 5,
 							x: 100,
 							y: 10,
 							width: 100,
@@ -415,86 +410,66 @@ carGame[blue] = {speed: 5,
 
 			//moveShip
 	     var blue2 = carGame[blue];
-    blue2.x += blue2.speed * blue2.directionX;
+			 console.log(blue2);
+
+
+			// blue2.directionX = 1;
+		 // 	blue2.x += blue2.speed * blue2.directionX;
+
+
+
 
 		localStorage.setItem("savedItem2", blue2);
+		console.log(blue2);
 
 			//console.log(blue2);
 
 			// RESETS IMAGE TO PARTICULAR LOCATION
 			if (ballHitsRightWall()) {
-			//	resetBall();
-			//USE TO POSITION IMAGE TO PARTICULAR LOCATION,
-			//THE X AND Y VALUES CAN BE CHANGED!
-			blue2.x = 200;
+  			blue2.x = 200;
 			blue2.y = 80;
 			blue2.directionX = 0;
 			}
 
-	//g = document.createElement('div');
-	//g.id = 'desiredId'
-	//		<div id="paddleC" class="paddle"></div>
 
 				//CREATE DOM ELEMENT
 	var para = document.createElement("div");
 	para.id = blue;
-	//var node = document.createTextNode("This is new.");
-	//para.appendChild(node);
 
-	var element = document.getElementById("gameAssets");
+ 	var element = document.getElementById("gameAssets");
 	var child = document.getElementById(blue);
 	element.insertBefore(para,child);
 
-
-
-
 				//CHANGE STYLE OF DOC ELEMENT
 	var square = document.getElementById(blue);
-	//	square.style.backgroundColor = "#fa4";
-		square.style.backgroundImage = "url('../images/ship.png')";
-//document.getElementById("myDiv").style.backgroundImage = "url('img_tree.png')";
-//  document.getElementById("myAnchor").id = "newid";
-//document.body.style.backgroundImage = "url('img_tree.png')";
-
-//var square = document.getElementById("square"),
-//  square.style.backgroundColor = "#fa4";
+ 		square.style.backgroundImage = "url('../images/ship.png')";
 
 
-var black =localStorage.getItem("savedItem");
-var red = "#" + black;
+		var black =localStorage.getItem("savedItem");
+		var red = "#" + black;
 
-var green  = localStorage.getItem("savedItem2");
+		var green  = localStorage.getItem("savedItem2");
+		console.log(blue2);
 
+		//DONT NEED THIS ONE AS LONG AS YOU HAVE THE OTHER ONE IN OTHER FUNCTION
+ 	/*	$(red).css({
+			"left" : blue2.x + blue2.speed * blue2.directionX,
+			"top" : blue2.y + blue2.speed * blue2.directionY
+		});
 
-//var black = "#"+blue;
-//console.log(red);
-	$(red).css({
-		"left" : green.x + green.speed * green.directionX,
-		"top" : green.y + green.speed * green.directionY
-	});
+		blue2.directionX = 1;
+		 blue2.x += blue2.speed * blue2.directionX;
+		 */
 
-		/*
-		left: 80px;
-		 width:50px;
-		height:50px;
-		transform: rotate(90deg);
-
-		background-image: url(../images/ship.png);
-		*/
-
- //window.requestAnimationFrame();
-	// 	blue2.timer = setInterval(gameloop, 1000/30);
-	//	function render() {  renderShip();  window.requestAnimationFrame(render);  }
-	//	function gameloop() {  moveShip();   }
-
-}
+ }
 
 
-//object["property"] = value;
-gameItem('blackman');
-console.log(carGame);
 
-//carGame["property"] = {x: 'value', y: 'blue'};
+	//object["property"] = value;
+	gameItem('blackman');
+	console.log(carGame);
+
+	//carGame["property"] = {x: 'value', y: 'blue'};
 
 
 
@@ -536,6 +511,13 @@ console.log(carGame);
 
 		carGame.enemy.directionX = 0;
 
+		var blue =localStorage.getItem("savedItem");
+ 		var blue2 = carGame[blue];
+
+		blue2.x = 150;
+		blue2.y = 100;
+		blue2.directionX = 0;
+
 		/*
 		// player B lost.
 		pingpong.scoreA += 1;
@@ -551,6 +533,7 @@ console.log(carGame);
 		var missle = carGame.missle;
 		var missle2 = carGame.missle2;
 		var enemy = carGame.enemy;
+ //	     var blue2 = carGame[blue];
 
     $("#paddleA").css({
       "left" : paddleA.x + paddleA.speed * paddleA.directionX,
@@ -583,15 +566,18 @@ console.log(carGame);
 			"top" : missle2.y + missle2.speed * missle2.directionY
 		});
 
+
 		var black =localStorage.getItem("savedItem");
 		var red = "#" + black;
 
-		var green  = localStorage.getItem("savedItem2");
+		var blue =localStorage.getItem("savedItem");
+ 		var blue2 = carGame[blue];
 
-		$(red).css({
-			"left" : green.x + green.speed * green.directionX,
-			"top" : green.y + green.speed * green.directionY
+ 		$(red).css({
+			"left" : blue2.x + blue2.speed * blue2.directionX,
+			"top" : blue2.y + blue2.speed * blue2.directionY
 		});
+
 
 window.requestAnimationFrame(render);
 
