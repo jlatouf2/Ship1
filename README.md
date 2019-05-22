@@ -1,3 +1,93 @@
+1) create level
+2) add more enemies
+3) add pause screen
+4) Fix start screen
+5)Learn state change for animation
+
+
+1) Add movement controls
+2) Add shoot
+3) Add enaemy
+4) Add Colision for  top of level and bottom of level
+
+5) Get movement for 2dbox objects.
+
+//in the Step() function
+  //cancel gravity for body 1 only
+  //bodies[1]->ApplyForce( bodies[1]->GetMass() * -m_world->GetGravity(), bodies[1]->GetWorldCenter() );
+
+switch(e.keyCode) {
+  case 38: // UP
+  var force = new b2Vec2(0, -10);
+    carGame.car.ApplyForce(force, carGame.car.GetWorldCenter());
+  //	carGame.car.SetLinearVelocity(new b2Vec2(0,-100));
+    //carGame.car.ApplyForce(carGame.car.GetMass() * -carGame.world.GetGravity(), carGame.car.GetWorldCenter() );
+    //		var gravity = new b2Vec2(0, 10);
+
+  //	carGame.car.ApplyForce(carGame.car.GetMass() * -carGame.car.GetGravity(), carGame.car.GetWorldCenter() );
+    //		carGame.car = createCarAt(50, 210);
+    //THIS IS USED TO CREATE CAR IN MAIN GAME function
+
+//	carGame.paddleC.directionY = -1;
+//	carGame.paddleC.y += 25 * carGame.paddleC.directionY;
+
+
+    console.log('UP');
+    return false;
+    break;
+
+    case 40: //  DOWN
+      var force = new b2Vec2(-150, 0);
+      carGame.car.ApplyForce(force, carGame.car.GetWorldCenter());
+
+
+    //	carGame.paddleC.directionY = 1;
+    //	carGame.paddleC.y += 25 * carGame.paddleC.directionY;
+      console.log('DOWN');
+      return false;
+      break;
+    case 39: // RIGHT
+  //	carGame.paddleC.directionX = 1;
+
+  var force = new b2Vec2(0, 150);
+    carGame.car.ApplyForce(force, carGame.car.GetWorldCenter());
+
+/*
+    //apply gradual force upwards
+    bodies[0]->ApplyForce( b2Vec2(0,50), bodies[0]->GetWorldCenter() );
+    break;
+  case 'w':
+    //apply immediate force upwards
+    bodies[1]->ApplyLinearImpulse( b2Vec2(0,50), bodies[1]->GetWorldCenter() );
+
+    //Box2D v2.2.1 onwards
+    body->SetGravityScale(0);//cancel gravity (use -1 to reverse gravity, etc)
+    carGame.car.GetWorldCenter(0);
+    //in the Step() function
+      //cancel gravity for body 1 only
+      bodies[1]->ApplyForce( bodies[1]->GetMass() * -m_world->GetGravity(), bodies[1]->GetWorldCenter() );
+*/
+
+
+//	carGame.paddleC.directionX = 1;
+//		carGame.paddleC.x += carGame.paddleC.speed * carGame.paddleC.directionX;
+    console.log('RIGHT');
+      return false;
+      break;
+    case 37: // LEFT
+    carGame.paddleC.directionX = -1;
+    carGame.paddleC.x += carGame.paddleC.speed * carGame.paddleC.directionX;
+    console.log('LEFT');
+      return false;
+      break;
+
+    case 32: // SPACEBAR
+    fireMissile();
+    console.log('SPACE');
+    return false;
+      break;
+
+
 'use strict';
 
 //The input and output fields
