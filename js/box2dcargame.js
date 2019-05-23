@@ -407,16 +407,9 @@ function gameItem(item){
 							directionX: 1,
 							directionY: 1};
 
-
 			//moveShip
 	     var blue2 = carGame[blue];
 			 console.log(blue2);
-
-
-			// blue2.directionX = 1;
-		 // 	blue2.x += blue2.speed * blue2.directionX;
-
-
 
 
 		localStorage.setItem("savedItem2", blue2);
@@ -451,79 +444,14 @@ function gameItem(item){
 		var green  = localStorage.getItem("savedItem2");
 		console.log(blue2);
 
-		//DONT NEED THIS ONE AS LONG AS YOU HAVE THE OTHER ONE IN OTHER FUNCTION
- 	/*	$(red).css({
-			"left" : blue2.x + blue2.speed * blue2.directionX,
-			"top" : blue2.y + blue2.speed * blue2.directionY
-		});
-
-		blue2.directionX = 1;
-		 blue2.x += blue2.speed * blue2.directionX;
-		 */
 
  }
-
-
 
 	//object["property"] = value;
 	gameItem('blackman');
 	console.log(carGame);
 
 	//carGame["property"] = {x: 'value', y: 'blue'};
-
-
-
-
-	  function ballHitsRightWall() {
-	//    return carGame.paddleB.x + carGame.paddleB.speed * carGame.paddleB.directionX > 500;
-
-			return carGame.missle.x + carGame.missle.speed * carGame.missle.directionX > 500;
-
-			//    return pingpong.ball.x + pingpong.ball.speed * pingpong.ball.directionX > pingpong.playground.width;
-	  }
-
-
- 	function resetBall() {
-		// reset the ball;
-		carGame.paddleB.x = 250;
-		carGame.paddleB.y = 100;
-
-		carGame.paddleA.x = 350;
-		carGame.paddleA.y = 300;
-
-		carGame.paddleC.x = 150;
-		carGame.paddleC.y = 100;
-
-
-		carGame.missle.x = carGame.paddleC.x;
-		carGame.missle.y = carGame.paddleC.y;
-
-
-		carGame.missle2.x =  50;
-		carGame.missle2.y = 50;
-
-		// update the ball location variables;
-		carGame.paddleA.directionX = 0;
-		carGame.paddleB.directionX = 0;
-		carGame.paddleC.directionX = 0;
-		carGame.missle.directionX = 0;
-		carGame.missle2.directionX = 0;
-
-		carGame.enemy.directionX = 0;
-
-		var blue =localStorage.getItem("savedItem");
- 		var blue2 = carGame[blue];
-
-		blue2.x = 150;
-		blue2.y = 100;
-		blue2.directionX = 0;
-
-		/*
-		// player B lost.
-		pingpong.scoreA += 1;
-		$("#score-a").text(pingpong.scoreA);
-		*/
-	}
 
 
 	function renderShip() {
@@ -582,6 +510,59 @@ function gameItem(item){
 window.requestAnimationFrame(render);
 
 	 }
+
+
+
+	  function ballHitsRightWall() {
+	//    return carGame.paddleB.x + carGame.paddleB.speed * carGame.paddleB.directionX > 500;
+
+			return carGame.missle.x + carGame.missle.speed * carGame.missle.directionX > 500;
+
+			//    return pingpong.ball.x + pingpong.ball.speed * pingpong.ball.directionX > pingpong.playground.width;
+	  }
+
+
+ 	function resetBall() {
+		// reset the ball;
+		carGame.paddleB.x = 250;
+		carGame.paddleB.y = 100;
+
+		carGame.paddleA.x = 350;
+		carGame.paddleA.y = 300;
+
+		carGame.paddleC.x = 150;
+		carGame.paddleC.y = 100;
+
+
+		carGame.missle.x = carGame.paddleC.x;
+		carGame.missle.y = carGame.paddleC.y;
+
+
+		carGame.missle2.x =  50;
+		carGame.missle2.y = 50;
+
+		// update the ball location variables;
+		carGame.paddleA.directionX = 0;
+		carGame.paddleB.directionX = 0;
+		carGame.paddleC.directionX = 0;
+		carGame.missle.directionX = 0;
+		carGame.missle2.directionX = 0;
+
+		carGame.enemy.directionX = 0;
+
+		var blue =localStorage.getItem("savedItem");
+ 		var blue2 = carGame[blue];
+
+		blue2.x = 150;
+		blue2.y = 100;
+		blue2.directionX = 0;
+
+		/*
+		// player B lost.
+		pingpong.scoreA += 1;
+		$("#score-a").text(pingpong.scoreA);
+		*/
+	}
 
 
 
