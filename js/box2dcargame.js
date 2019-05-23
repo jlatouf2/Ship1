@@ -73,8 +73,8 @@
 			speed: 5,
 			x: 130,
 			y: 50,
-			width: 40,
-			height: 40,
+		 	width: 40,
+		 	height: 40,
 			directionX: 1,
 			directionY: 1
 
@@ -139,6 +139,8 @@ carGame.levels[1] = [{"type":"car","x":50,"y":310,"fuel":20},
 	var shouldDrawDebug = false;
 	var gameloop;
 	var count1 = 0;
+	var spaceCount = 0;
+	var d1 = new Date();
 
 	function initGame() {
 
@@ -217,15 +219,18 @@ carGame.levels[1] = [{"type":"car","x":50,"y":310,"fuel":20},
 					break;
 
 				case 32: // SPACEBAR
-				fireMissile();
-				console.log('SPACE');
-				return false;
+  				fireMissile();
+			//	console.log('SPACE');
+ 				return false;
 					break;
 
 			}
 		});
 
+//if (Time1 - Time2 > 1000ms) {count=0}
 	//	gameItem('blackman');
+
+	//var d = new Date();
 
 		window.requestAnimationFrame(render);
 
@@ -247,7 +252,7 @@ carGame.levels[1] = [{"type":"car","x":50,"y":310,"fuel":20},
 		});
 	}
 
-
+/*
 function fireMissile()
 {
 
@@ -303,6 +308,125 @@ function fireMissile()
 
 };
 
+*/
+
+
+//return carGame.missle.x + carGame.missle.speed * carGame.missle.directionX > 500;
+
+//in spacebar function, count how many presses, then loop through array.
+function fireMissile()
+{
+
+
+
+	 	//cargame missle hide
+		console.log(carGame.paddleC.x);
+		console.log(carGame.paddleC.y);
+
+		var x = document.createElement("IMG");
+
+		// var img = document.getElementById('tetris_image')
+		x.classList.add('missle');
+		x.setAttribute("src", "../images/Missle.png");
+		x.setAttribute("width", "50");
+		x.setAttribute("height", "50");
+	 //	 x.classList.add('yourCssClass')
+		x.style.left =  carGame.paddleC.x + 'px';
+		x.style.top =  carGame.paddleC.y +'px';
+
+	 // x.style.x = '100px';
+		 x.style.position = "absolute";
+
+
+		x.setAttribute("alt", "The Pulpit Rock");
+		document.body.appendChild(x);
+
+		//carGame.missle.directionX = 1;
+		//carGame.missle.x += carGame.missle.speed * carGame.missle.directionX;
+		//carGame.missle.timer = setInterval(gameloop, 1000/30);
+		moveMissle();
+
+var stuff = document.getElementsByClassName("missle");
+console.log(stuff);
+//stuff.parentNOde.removeChild("missle");
+	//	document.getElementsByClassName("missle").remove();
+//	var element = document.getElementById(elementId);
+// element.parentNode.removeChild(element);
+
+
+var element2 = document.getElementById("bodyTag");
+console.log(element2);
+
+
+
+};
+
+
+
+
+
+/*
+
+var missle2 = 'missle';
+//CREATE DOM ELEMENT
+var para = document.createElement("div");
+ para.id = missle2;
+
+var element = document.getElementById("gameAssets");
+var child = document.getElementById(missle2);
+element.insertBefore(para,child);
+
+	//CHANGE STYLE OF DOC ELEMENT
+var square = document.getElementById(missle2);
+square.style.backgroundImage = "url('../images/Missle.png')";
+square.style.left =  carGame.paddleC.x + 'px';
+square.style.top =  carGame.paddleC.y +'px';
+square.style.width =    '50px';
+square.style.height =   '40px';
+
+square.style.position = "absolute";
+square.style.backgroundSize = "contain";
+
+
+//carGame.missle.directionX = 1;
+//carGame.missle.x += carGame.missle.speed * carGame.missle.directionX;
+//carGame.missle.timer = setInterval(gameloop, 1000/30);
+moveMissle();
+
+
+
+	var missle = 'missle';
+	//CREATE DOM ELEMENT
+	var para = document.createElement("div");
+	para.id = missle;
+
+	var element = document.getElementById("gameAssets");
+	var child = document.getElementById(missle);
+	element.insertBefore(para,child);
+
+		//CHANGE STYLE OF DOC ELEMENT
+	var square = document.getElementById(missle);
+	square.style.backgroundImage = "url('../images/missle.png')";
+	square.style.left =  carGame.paddleC.x + 'px';
+	square.style.top =  carGame.paddleC.y +'px';
+	square.style.position = "absolute";
+
+
+//CREATE DOM ELEMENT
+var para = document.createElement("div");
+para.id = blue;
+
+var element = document.getElementById("gameAssets");
+var child = document.getElementById(blue);
+element.insertBefore(para,child);
+
+	//CHANGE STYLE OF DOC ELEMENT
+var square = document.getElementById(blue);
+square.style.backgroundImage = "url('../images/ship.png')";
+*/
+
+
+
  function moveMissle(){
 
  //REFER TO RESETBALL TO CHANGE X AND Y POSITION OF ROCKET.
@@ -310,8 +434,6 @@ function fireMissile()
 	carGame.missle.directionX = 1;
 	carGame.missle.x += carGame.missle.speed * carGame.missle.directionX;
 
-	carGame.missle2.directionX = 1;
-	carGame.missle2.x += carGame.missle2.speed * carGame.missle2.directionX;
 
 };
 
@@ -349,58 +471,53 @@ function addImage() {
   function render() {      moveShip(); }
 
 
-	function whiteMove(){   }
-
-
 	//USED TO MOVE SHIP AND PLAYER IN CORRECT DIRECTIONS
   function moveShip() {
 
     var paddleA = carGame.paddleA;
-     paddleA.x += paddleA.speed * paddleA.directionX;
+     //paddleA.x += paddleA.speed * paddleA.directionX;
 
 		 var paddleB = carGame.paddleB;
-			paddleB.x += paddleB.speed * paddleB.directionX;
+		//	paddleB.x += paddleB.speed * paddleB.directionX;
 
  		var paddleC = carGame.paddleC;
- 			paddleC.x += paddleC.speed * paddleC.directionX;
+ 		 	paddleC.x += paddleC.speed * paddleC.directionX;
 
 			var missle = carGame.missle;
- 			missle.x += missle.speed * missle.directionX;
+ 			missle.x += 50 * missle.directionX;
 
 			var missle2 = carGame.missle2;
- 			missle2.x += missle2.speed * missle2.directionX;
+ 		//	missle2.x += missle2.speed * missle2.directionX;
 
 			var enemy = carGame.enemy;
- 			enemy.x += enemy.speed * enemy.directionX;
+ 		//	enemy.x += enemy.speed * enemy.directionX;
 
-
-			if (count1 !== 0) {
-				//	console.log(count1);
-					for (var i = 0; i < count1; i++) {
-						var blue =localStorage.getItem("savedItem");
-					 	var blue2 = carGame[blue];
-					 	blue2.x += blue2.speed * blue2.directionX;
-
-					 	 var red = "#" + blue;
-
-					 	$(red).css({
-					 		"left" : blue2.x + blue2.speed * blue2.directionX,
-					 		"top" : blue2.y + blue2.speed * blue2.directionY
-					 	});
-					}
-
-			}
-
-
-		/*	var paddleA = carGame.paddleA;
-			var paddleB = carGame.paddleB;
-			var paddleC = carGame.paddleC;
-			var missle = carGame.missle;
-			var missle2 = carGame.missle2;
 			var enemy = carGame.enemy;
-	 //	     var blue2 = carGame[blue];
-*/
-	    $("#paddleA").css({
+ 		//	enemy.x += enemy.speed * enemy.directionX;
+
+			var blackman = carGame.blackman;
+ 		//	blackman.x += blackman.speed * blackman.directionX;
+
+	/*
+	 						var blue =localStorage.getItem("savedItem");
+						 	var blue2 = carGame[blue];
+
+						 	blue2.x += blue2.speed * blue2.directionX;
+
+						 	 var red = "#" + blue;
+
+						 	$(red).css({
+						 		"left" : blue2.x + blue2.speed * blue2.directionX,
+						 		"top" : blue2.y + blue2.speed * blue2.directionY
+						 	});
+	*/
+
+			$("#blackman").css({
+				"left" : blackman.x + blackman.speed * blackman.directionX,
+				"top" : blackman.y + blackman.speed * blackman.directionY
+			});
+
+ 	    $("#paddleA").css({
 	      "left" : paddleA.x + paddleA.speed * paddleA.directionX,
 	      "top" : paddleA.y + paddleA.speed * paddleA.directionY
 	    });
@@ -411,14 +528,20 @@ function addImage() {
 			});
 
 			$("#paddleC").css({
-				"left" : paddleC.x + paddleC.speed * paddleC.directionX,
-				"top" : paddleC.y + paddleC.speed * paddleC.directionY
+				"left" : paddleC.x + 25 * paddleC.directionX,
+				"top" : paddleC.y + 25 * paddleC.directionY
 			});
 
-			$(".missle").css({
+			$("#missle").css({
 				"left" : missle.x + missle.speed * missle.directionX,
 				"top" : missle.y + missle.speed * missle.directionY
 			});
+
+	 	$(".missle").css({
+				"left" : missle.x + missle.speed * missle.directionX,
+				"top" : missle.y + missle.speed * missle.directionY
+			});
+
 
 			$("#enemy").css({
 				"left" : enemy.x + enemy.speed * enemy.directionX,
@@ -438,7 +561,12 @@ function addImage() {
 			// check right
 	    if (ballHitsRightWall()) {
 	      resetBall();
-	    }
+
+				//REMOVES THE MISSLE WITH JSQUERY
+				$(".missle").remove();
+
+
+ 	    }
 
   }
 
@@ -448,25 +576,31 @@ function addImage() {
 //Useless because for each item, the style needs to change,
 //and there are tons of variables for each thing, spped,x, y,...
 
- function gameItem(item){
+/*CAN BE USED TO MAKE AN ITEM, BUT YOU STILL NEED TO:
+1) MAKE SPEED IN moveShip()
+2) CHANGE THE CSS VALUES IN CSS
+3) THE STOP VALUES IN RESETBALL()
+*/
+
+ function gameItem(item, speed, x, y, width, height, dirx, diry, image){
 	var blue = item;
 
 		localStorage.setItem("savedItem", blue);
 		console.log(blue);
-	 carGame[blue] = {speed: 5,
-								x: 100,
-								y: 10,
-								width: 100,
-								height: 80,
-								directionX: 1,
-								directionY: 1};
+		 carGame[blue] = {speed: speed,
+									x: x,
+									y: y,
+									width: width,
+									height: height,
+									directionX: dirx,
+									directionY: diry};
 
 			//moveShip
 	     var blue2 = carGame[blue];
 			 console.log(blue2);
 
-		localStorage.setItem("savedItem2", blue2);
-		console.log(blue2);
+			localStorage.setItem("savedItem2", blue2);
+			console.log(blue2);
 
 			// RESETS IMAGE TO PARTICULAR LOCATION
 			if (ballHitsRightWall()) {
@@ -485,35 +619,33 @@ function addImage() {
 
 					//CHANGE STYLE OF DOC ELEMENT
 		var square = document.getElementById(blue);
- 		square.style.backgroundImage = "url('../images/ship.png')";
-		square.style.backgroundSize = "contain";
-		square.style.position = "absolute";
-		square.style.transform = "rotate(90deg)";
-		square.style.left = "1300px";
-		square.style.width = "80px";
-		square.style.height = "80px";
-
-
-		count1++;
+ 		square.style.backgroundImage = image;
 
 	 }
+	 /*
+	 carGame[blue] = {speed: 5,
+								x: 100,
+								y: 10,
+								width: 100,
+								height: 80,
+								directionX: 1,
+								directionY: 1};
+*/
 
+ 	gameItem('blackman', 5, 100, 10, 100, 80, 1, 1, "url('../images/ship.png')");
+	gameItem('blueman', 5, 100, 10, 100, 80, 1, 1, "url('../images/enemy.png')");
 
+	gameItem('football', 5, 100, 10, 100, 80, 1, 1, "url('../images/football-player.png')");
 
-	//object["property"] = value;
-	gameItem('blackman');
-	gameItem('blueman');
-
-	console.log(carGame);
-
-	//carGame["property"] = {x: 'value', y: 'blue'};
 
 
 	  function ballHitsRightWall() {
 	//    return carGame.paddleB.x + carGame.paddleB.speed * carGame.paddleB.directionX > 500;
-			return carGame.missle.x + carGame.missle.speed * carGame.missle.directionX > 500;
+
+			return carGame.missle.x + carGame.missle.speed * carGame.missle.directionX > 1000;
 			//    return pingpong.ball.x + pingpong.ball.speed * pingpong.ball.directionX > pingpong.playground.width;
-	  }
+ 	  }
+
 
 
  	function resetBall() {
@@ -524,12 +656,12 @@ function addImage() {
 		carGame.paddleA.x = 350;
 		carGame.paddleA.y = 300;
 
-		carGame.paddleC.x = 150;
-		carGame.paddleC.y = 100;
+	//	carGame.paddleC.x = 150;
+	//	carGame.paddleC.y = 100;
 
 
-		carGame.missle.x = carGame.paddleC.x;
-		carGame.missle.y = carGame.paddleC.y;
+		carGame.missle.x = 100;
+		carGame.missle.y = 100;
 
 
 		carGame.missle2.x =  50;
@@ -544,12 +676,21 @@ function addImage() {
 
 		carGame.enemy.directionX = 0;
 
-		var blue =localStorage.getItem("savedItem");
+
+		var blackman = carGame.blackman;
+
+		blackman.x = 100;
+		blackman.y = 100;
+		blackman.directionX = 0;
+
+	/*	var blue =localStorage.getItem("savedItem");
  		var blue2 = carGame[blue];
 
 		blue2.x = 150;
 		blue2.y = 100;
 		blue2.directionX = 0;
+*/
+
 
 		/*
 		// player B lost.
