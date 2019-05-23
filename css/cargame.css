@@ -130,6 +130,9 @@ top:200px;
    transform: rotate(90deg)
  }
 
+ 
+/*
+
  #blackman {
 
    left: 130px;
@@ -142,7 +145,7 @@ top:200px;
 
    }
 
-
+*/
 
 .startscreen {
   background: #eee url(../images/starting_screen.jpg);

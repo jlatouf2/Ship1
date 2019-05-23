@@ -138,6 +138,7 @@ carGame.levels[1] = [{"type":"car","x":50,"y":310,"fuel":20},
 	var pxPerMeter = 30; // 30 pixels = 1 meter
 	var shouldDrawDebug = false;
 	var gameloop;
+	var count1 = 0;
 
 	function initGame() {
 
@@ -345,7 +346,7 @@ function addImage() {
 	function boxAppear() { boxShape1(400, 250);  };
 
 	// browser render loop
-  function render() {   renderShip();  moveShip(); }
+  function render() {      moveShip(); }
 
 
 	function whiteMove(){   }
@@ -372,50 +373,100 @@ function addImage() {
 			var enemy = carGame.enemy;
  			enemy.x += enemy.speed * enemy.directionX;
 
-			var blue =localStorage.getItem("savedItem");
-		//	console.log(blue);
 
-			var blue2 = carGame[blue];
-	 blue2.x += blue2.speed * blue2.directionX;
+			if (count1 !== 0) {
+				//	console.log(count1);
+					for (var i = 0; i < count1; i++) {
+						var blue =localStorage.getItem("savedItem");
+					 	var blue2 = carGame[blue];
+					 	blue2.x += blue2.speed * blue2.directionX;
+
+					 	 var red = "#" + blue;
+
+					 	$(red).css({
+					 		"left" : blue2.x + blue2.speed * blue2.directionX,
+					 		"top" : blue2.y + blue2.speed * blue2.directionY
+					 	});
+					}
+
+			}
+
+
+		/*	var paddleA = carGame.paddleA;
+			var paddleB = carGame.paddleB;
+			var paddleC = carGame.paddleC;
+			var missle = carGame.missle;
+			var missle2 = carGame.missle2;
+			var enemy = carGame.enemy;
+	 //	     var blue2 = carGame[blue];
+*/
+	    $("#paddleA").css({
+	      "left" : paddleA.x + paddleA.speed * paddleA.directionX,
+	      "top" : paddleA.y + paddleA.speed * paddleA.directionY
+	    });
+
+			$("#paddleB").css({
+				"left" : paddleB.x + paddleB.speed * paddleB.directionX,
+				"top" : paddleB.y + paddleB.speed * paddleB.directionY
+			});
+
+			$("#paddleC").css({
+				"left" : paddleC.x + paddleC.speed * paddleC.directionX,
+				"top" : paddleC.y + paddleC.speed * paddleC.directionY
+			});
+
+			$(".missle").css({
+				"left" : missle.x + missle.speed * missle.directionX,
+				"top" : missle.y + missle.speed * missle.directionY
+			});
+
+			$("#enemy").css({
+				"left" : enemy.x + enemy.speed * enemy.directionX,
+				"top" : enemy.y + enemy.speed * enemy.directionY
+			});
+
+			$(".missle2").css({
+				"left" : missle2.x + missle2.speed * missle2.directionX,
+				"top" : missle2.y + missle2.speed * missle2.directionY
+			});
+
+
+
+
+			window.requestAnimationFrame(render);
 
 			// check right
 	    if (ballHitsRightWall()) {
 	      resetBall();
 	    }
 
-
-			blue2.timer = setInterval(gameloop, 1000/30);
-
   }
 
-//console.log(carGame);
-
-//localStorage.setItem("lastname", "Smith");
-//localStorage.getItem("lastname");
 
 
-function gameItem(item){
+
+//Useless because for each item, the style needs to change,
+//and there are tons of variables for each thing, spped,x, y,...
+
+ function gameItem(item){
 	var blue = item;
 
-	localStorage.setItem("savedItem", blue);
-
- carGame[blue] = {speed: 5,
-							x: 100,
-							y: 10,
-							width: 100,
-							height: 80,
-							directionX: 1,
-							directionY: 1};
+		localStorage.setItem("savedItem", blue);
+		console.log(blue);
+	 carGame[blue] = {speed: 5,
+								x: 100,
+								y: 10,
+								width: 100,
+								height: 80,
+								directionX: 1,
+								directionY: 1};
 
 			//moveShip
 	     var blue2 = carGame[blue];
 			 console.log(blue2);
 
-
 		localStorage.setItem("savedItem2", blue2);
 		console.log(blue2);
-
-			//console.log(blue2);
 
 			// RESETS IMAGE TO PARTICULAR LOCATION
 			if (ballHitsRightWall()) {
@@ -424,100 +475,43 @@ function gameItem(item){
 			blue2.directionX = 0;
 			}
 
-
 				//CREATE DOM ELEMENT
-	var para = document.createElement("div");
-	para.id = blue;
+		var para = document.createElement("div");
+		para.id = blue;
 
- 	var element = document.getElementById("gameAssets");
-	var child = document.getElementById(blue);
-	element.insertBefore(para,child);
+	 	var element = document.getElementById("gameAssets");
+		var child = document.getElementById(blue);
+		element.insertBefore(para,child);
 
-				//CHANGE STYLE OF DOC ELEMENT
-	var square = document.getElementById(blue);
+					//CHANGE STYLE OF DOC ELEMENT
+		var square = document.getElementById(blue);
  		square.style.backgroundImage = "url('../images/ship.png')";
+		square.style.backgroundSize = "contain";
+		square.style.position = "absolute";
+		square.style.transform = "rotate(90deg)";
+		square.style.left = "1300px";
+		square.style.width = "80px";
+		square.style.height = "80px";
 
 
-		var black =localStorage.getItem("savedItem");
-		var red = "#" + black;
-
-		var green  = localStorage.getItem("savedItem2");
-		console.log(blue2);
-
-
- }
-
-	//object["property"] = value;
-	gameItem('blackman');
-	console.log(carGame);
-
-	//carGame["property"] = {x: 'value', y: 'blue'};
-
-
-	function renderShip() {
-    var paddleA = carGame.paddleA;
-		var paddleB = carGame.paddleB;
-		var paddleC = carGame.paddleC;
-		var missle = carGame.missle;
-		var missle2 = carGame.missle2;
-		var enemy = carGame.enemy;
- //	     var blue2 = carGame[blue];
-
-    $("#paddleA").css({
-      "left" : paddleA.x + paddleA.speed * paddleA.directionX,
-      "top" : paddleA.y + paddleA.speed * paddleA.directionY
-    });
-
-		$("#paddleB").css({
-			"left" : paddleB.x + paddleB.speed * paddleB.directionX,
-			"top" : paddleB.y + paddleB.speed * paddleB.directionY
-		});
-
-		$("#paddleC").css({
-			"left" : paddleC.x + paddleC.speed * paddleC.directionX,
-			"top" : paddleC.y + paddleC.speed * paddleC.directionY
-		});
-
-
-		$(".missle").css({
-			"left" : missle.x + missle.speed * missle.directionX,
-			"top" : missle.y + missle.speed * missle.directionY
-		});
-
-		$("#enemy").css({
-			"left" : enemy.x + enemy.speed * enemy.directionX,
-			"top" : enemy.y + enemy.speed * enemy.directionY
-		});
-
-		$(".missle2").css({
-			"left" : missle2.x + missle2.speed * missle2.directionX,
-			"top" : missle2.y + missle2.speed * missle2.directionY
-		});
-
-
-		var black =localStorage.getItem("savedItem");
-		var red = "#" + black;
-
-		var blue =localStorage.getItem("savedItem");
- 		var blue2 = carGame[blue];
-
- 		$(red).css({
-			"left" : blue2.x + blue2.speed * blue2.directionX,
-			"top" : blue2.y + blue2.speed * blue2.directionY
-		});
-
-
-window.requestAnimationFrame(render);
+		count1++;
 
 	 }
 
 
 
+	//object["property"] = value;
+	gameItem('blackman');
+	gameItem('blueman');
+
+	console.log(carGame);
+
+	//carGame["property"] = {x: 'value', y: 'blue'};
+
+
 	  function ballHitsRightWall() {
 	//    return carGame.paddleB.x + carGame.paddleB.speed * carGame.paddleB.directionX > 500;
-
 			return carGame.missle.x + carGame.missle.speed * carGame.missle.directionX > 500;
-
 			//    return pingpong.ball.x + pingpong.ball.speed * pingpong.ball.directionX > pingpong.playground.width;
 	  }
 
@@ -563,7 +557,6 @@ window.requestAnimationFrame(render);
 		$("#score-a").text(pingpong.scoreA);
 		*/
 	}
-
 
 
 	 function restartGame(level) {
@@ -616,6 +609,7 @@ window.requestAnimationFrame(render);
 		}
 	}
 
+
 	function showDebugDraw() {
 		shouldDrawDebug = true;
 
@@ -631,6 +625,7 @@ window.requestAnimationFrame(render);
 
 		carGame.world.DrawDebugData();
 	}
+
 
 	function updateWorld() {
 		// Move the physics world 1 step forward.
