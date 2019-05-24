@@ -29,6 +29,11 @@
 }
 
 html, body{
+/*  background: url(../images/website_background.jpg);
+
+font-family: 'Play', arial, serif;  */
+}
+
  }
 
 #boaderTop {
@@ -96,16 +101,14 @@ background-image: url(../images/ship.png);
 #football {
 /*  margin-top: 60px;   */
 
-left: 180px;
-top: 240px;
+left: 880px;
+top: 140px;
 
  width:44px;
 height:100px;
 
 background-size: contain;
  position: absolute;
-
-
  }
 
 #ship22 {

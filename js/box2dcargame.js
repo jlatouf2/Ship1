@@ -71,8 +71,8 @@
 
 		missle: {
 			speed: 5,
-			x: 130,
-			y: 50,
+			x: 10,
+			y: 0,
 		 	width: 40,
 		 	height: 40,
 			directionX: 1,
@@ -159,9 +159,9 @@ carGame.levels[1] = [{"type":"car","x":50,"y":310,"fuel":20},
 	// 	paddleA.timer = setInterval(gameloop, 1000/30);
 		setTimeout(shipApp, 1000);
 
-		paddleB.timer = setInterval(gameloop, 1000/30);
+ 	paddleB.timer = setInterval(gameloop, 1000/30);
 
-		paddleC.timer = setInterval(gameloop, 1000/30);
+ 	paddleC.timer = setInterval(gameloop, 1000/30);
 
 	//	setTimeout(boxAppear, 2000);
 
@@ -219,10 +219,16 @@ carGame.levels[1] = [{"type":"car","x":50,"y":310,"fuel":20},
 					break;
 
 				case 32: // SPACEBAR
-  				fireMissile();
+ 		fireMissile();
 			//	console.log('SPACE');
  				return false;
 					break;
+
+					case 13: // ENTER
+
+ 					return false;
+						break;
+
 
 			}
 		});
@@ -318,10 +324,9 @@ function fireMissile()
 {
 
 
-
-	 	//cargame missle hide
-		console.log(carGame.paddleC.x);
-		console.log(carGame.paddleC.y);
+ 	 	//cargame missle hide
+//		console.log(carGame.paddleC.x);
+//		console.log(carGame.paddleC.y);
 
 		var x = document.createElement("IMG");
 
@@ -331,12 +336,12 @@ function fireMissile()
 		x.setAttribute("width", "50");
 		x.setAttribute("height", "50");
 	 //	 x.classList.add('yourCssClass')
-		x.style.left =  carGame.paddleC.x + 'px';
-		x.style.top =  carGame.paddleC.y +'px';
+	//	x.style.left = carGame.paddleC.x;
+	//	x.style.top =  carGame.paddleC.y;
 
 	 // x.style.x = '100px';
 		 x.style.position = "absolute";
-
+		 x.style.backgroundSize = "contain"
 
 		x.setAttribute("alt", "The Pulpit Rock");
 		document.body.appendChild(x);
@@ -347,7 +352,7 @@ function fireMissile()
 		moveMissle();
 
 var stuff = document.getElementsByClassName("missle");
-console.log(stuff);
+///console.log(stuff);
 //stuff.parentNOde.removeChild("missle");
 	//	document.getElementsByClassName("missle").remove();
 //	var element = document.getElementById(elementId);
@@ -355,7 +360,7 @@ console.log(stuff);
 
 
 var element2 = document.getElementById("bodyTag");
-console.log(element2);
+//console.log(element2);
 
 
 
@@ -512,10 +517,10 @@ function addImage() {
 						 	});
 	*/
 
-			$("#blackman").css({
+	/*		$("#blackman").css({
 				"left" : blackman.x + blackman.speed * blackman.directionX,
 				"top" : blackman.y + blackman.speed * blackman.directionY
-			});
+			});  */
 
  	    $("#paddleA").css({
 	      "left" : paddleA.x + paddleA.speed * paddleA.directionX,
@@ -563,7 +568,7 @@ function addImage() {
 	      resetBall();
 
 				//REMOVES THE MISSLE WITH JSQUERY
-				$(".missle").remove();
+	 	$(".missle").remove();
 
 
  	    }
@@ -586,7 +591,7 @@ function addImage() {
 	var blue = item;
 
 		localStorage.setItem("savedItem", blue);
-		console.log(blue);
+	//	console.log(blue);
 		 carGame[blue] = {speed: speed,
 									x: x,
 									y: y,
@@ -597,10 +602,10 @@ function addImage() {
 
 			//moveShip
 	     var blue2 = carGame[blue];
-			 console.log(blue2);
+		//	 console.log(blue2);
 
 			localStorage.setItem("savedItem2", blue2);
-			console.log(blue2);
+			//console.log(blue2);
 
 			// RESETS IMAGE TO PARTICULAR LOCATION
 			if (ballHitsRightWall()) {
@@ -632,7 +637,7 @@ function addImage() {
 								directionY: 1};
 */
 
- 	gameItem('blackman', 5, 100, 10, 100, 80, 1, 1, "url('../images/ship.png')");
+  	gameItem('blackman', 5, 100, 10, 100, 80, 1, 1, "url('../images/ship.png')");
 	gameItem('blueman', 5, 100, 10, 100, 80, 1, 1, "url('../images/enemy.png')");
 
 	gameItem('football', 5, 100, 10, 100, 80, 1, 1, "url('../images/football-player.png')");
@@ -656,13 +661,23 @@ function addImage() {
 		carGame.paddleA.x = 350;
 		carGame.paddleA.y = 300;
 
-	//	carGame.paddleC.x = 150;
-	//	carGame.paddleC.y = 100;
+	 	carGame.paddleC.x = 150;
+	 	carGame.paddleC.y = 100;
 
 
-		carGame.missle.x = 100;
-		carGame.missle.y = 100;
+	 	carGame.missle.x = 	carGame.paddleC.x;
+	 	carGame.missle.y = 	carGame.paddleC.y + 70;
 
+ 	carGame.missle.x = 0;
+	 	carGame.missle.y = 0;
+
+		/*
+		carGame.paddleC.x = carGame.paddleC.x;
+		carGame.paddleC.y = carGame.paddleC.y;
+
+		carGame.missle.x = 	carGame.paddleC.x;
+		carGame.missle.y = 	carGame.paddleC.y + 70;
+		*/
 
 		carGame.missle2.x =  50;
 		carGame.missle2.y = 50;
@@ -679,9 +694,9 @@ function addImage() {
 
 		var blackman = carGame.blackman;
 
-		blackman.x = 100;
-		blackman.y = 100;
-		blackman.directionX = 0;
+	 	blackman.x = 100;
+ 	blackman.y = 100;
+ 	blackman.directionX = 0;
 
 	/*	var blue =localStorage.getItem("savedItem");
  		var blue2 = carGame[blue];
@@ -692,12 +707,7 @@ function addImage() {
 */
 
 
-		/*
-		// player B lost.
-		pingpong.scoreA += 1;
-		$("#score-a").text(pingpong.scoreA);
-		*/
-	}
+ 	}
 
 
 	 function restartGame(level) {
